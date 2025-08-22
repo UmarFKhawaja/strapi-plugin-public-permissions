@@ -6,7 +6,7 @@ export const deletePermissionLinksByPermissions = async (
   permissions: UPPermission[],
   isV5: boolean
 ): Promise<number> => {
-  return await trx(isV5 ? TABLE.linksV5 : TABLE.linksV4)
+  return trx(isV5 ? TABLE.linksV5 : TABLE.linksV4)
     .whereIn(
       "permission_id",
       permissions.map(({ id }) => id)

@@ -1,14 +1,13 @@
 import type { Strapi } from "@strapi/strapi";
 import { PluginGetter } from "./types";
-import { setPublicContentTypes } from "./helpers/setPublicContentTypes";
+import { setContentTypes } from "./helpers/setContentTypes";
 
-export default ({ strapi }: { strapi: Strapi }) => {
+export default async ({ strapi }: { strapi: Strapi }) => {
   const plugin: PluginGetter = strapi.plugin("public-permissions");
 
-  setPublicContentTypes({
+  await setContentTypes({
     strapi,
-    actions: plugin.config("actions"),
-    plugins: plugin.config("plugins"),
+    roles: plugin.config("roles"),
     maxParallelOperations: plugin.config("maxParallelOperations"),
     verbose: plugin.config("verbose"),
   });

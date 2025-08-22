@@ -1,8 +1,8 @@
 export const createDbOperationsLists = (
   configuredActions: [string, string[]][]
 ): { toInsert: string[]; toDelete: string[] } => {
-  const result = configuredActions.reduce(
-    (acc, [key, value]) => {
+  const result: { toInsert: string[]; toDelete: string[] } = configuredActions.reduce(
+    (acc: { toInsert: string[]; toDelete: string[] }, [key, value]) => {
       const isEmpty = !value?.length || !value[0];
 
       if (isEmpty) {

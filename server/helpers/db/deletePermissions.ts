@@ -5,7 +5,7 @@ export const deletePermissions = async (
   trx: Transaction,
   permissions: UPPermission[]
 ): Promise<number> => {
-  return await trx(TABLE.permissions)
+  return trx(TABLE.permissions)
     .whereIn(
       "id",
       permissions.map(({ id }) => id)

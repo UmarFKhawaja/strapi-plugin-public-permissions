@@ -5,5 +5,5 @@ export const getPermissionsLinks = async (
   trx: Transaction,
   isV5: boolean
 ): Promise<UPPermissionsLink[]> => {
-  return await trx.select("*").from(isV5 ? TABLE.linksV5 : TABLE.linksV4);
+  return trx.select("*").from(isV5 ? TABLE.linksV5 : TABLE.linksV4);
 };

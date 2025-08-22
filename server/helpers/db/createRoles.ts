@@ -1,8 +1,8 @@
 import { TABLE } from "./table";
 import { Transaction } from "./types";
 
-export const createPublicRole = async (trx: Transaction) => {
-  return await trx
+export const createRoles = async (trx: Transaction) => {
+  return trx
     .insert([
       {
         name: "Authenticated",

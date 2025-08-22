@@ -6,7 +6,7 @@ export const getPermissionsLinksByPermissionIds = async (
   permissionIds: number[],
   isV5: boolean
 ): Promise<UPPermissionsLink[]> => {
-  return await trx
+  return trx
     .select("*")
     .from(isV5 ? TABLE.linksV5 : TABLE.linksV4)
     .whereIn("permission_id", permissionIds);

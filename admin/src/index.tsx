@@ -24,23 +24,23 @@ export default {
     const { locales } = app;
 
     const importedTrads = await Promise.all(
-      (locales as any[]).map((locale) => {
-        return import(`./translations/${locale}.json`)
-          .then(({ default: data }) => {
-            return {
-              data: prefixPluginTranslations(data, pluginId),
-              locale,
-            };
-          })
-          .catch(() => {
-            return {
-              data: {},
-              locale,
-            };
-          });
+      (locales as any[]).map(async (locale) => {
+        try {
+          const { default: data } = await import(`./translations/${locale}.json`);
+
+          return {
+            data: prefixPluginTranslations(data, pluginId),
+            locale
+          };
+        } catch {
+          return {
+            data: {},
+            locale
+          };
+        }
       })
     );
 
-    return Promise.resolve(importedTrads);
+    return importedTrads;
   },
 };
